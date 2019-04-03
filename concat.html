@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr1 = [{
+        name: 'LMQ',
+        age: 18
+    }, {
+        name: '迪丽热巴',
+        age: 20
+    }]
+
+    //数组与对象的判断方法
+    var arr = ['aa', 'bb', 'cc'];
+    var obj = {
+        'a': 'aa',
+        'b': 'bb',
+        'c': 'cc'
+    };
+    console.log(arr.constructor === Array); //true
+    console.log(arr.constructor === Object); //false
+    console.log(obj.constructor === Object); //true
+    console.log(obj.constructor === Array); //false
+
+    function getType(data) {
+        if (data.constructor === Array) {
+            return 'array'
+        } else if (data.constructor === Object) {
+            return 'object'
+        }
+    }
+
+    //数组对象的深拷贝
+    function objDeepCopy(source) {
+        var sourceCopy = source instanceof Array ? [] : {};
+        for (var item in source) {
+            sourceCopy[item] = typeof source[item] === 'object' ? objDeepCopy(source[item]) : source[item];
+        }
+        return sourceCopy;
+    }
+    let arr2 = objDeepCopy(arr1);
+    arr2.forEach(el => {
+        el.like = '吃喝玩乐'
+    });
+    console.log(arr1)
+    console.log(arr2)
+</script>
+
+</html>
