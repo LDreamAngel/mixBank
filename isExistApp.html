@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.downlink').addEventListener('click', function () {
+                var loadDateTime = new Date(),
+                        href = location.href,
+                        appInnerUrlPrefix = 'http://a.app.qq.com/o/simple.jsp?pkgname=',
+                        newHref = href.substring(href.indexOf('//') + 2)
+                var isiOS = navigator.userAgent.match('iPad') || navigator.userAgent.match('iPhone') || navigator.userAgent.match(
+                                'iPod'),
+                        isAndroid = navigator.userAgent
+                                .match('Android'),
+                        isDesktop = !isiOS && !isAndroid;
+                if (isiOS) {
+                    newHref = appInnerUrlPrefix + "com.zhulogic.xita_home";
+                } else if (isAndroid) {
+                    newHref = appInnerUrlPrefix + "com.zhulogic.xita_home&g_f=991653";
+                } else {
+                    newHref = appInnerUrlPrefix + "com.zhulogic.xita_home&g_f=991653";
+                }
+                setTimeout(function () {
+                    console.log(newHref);
+                    var timeOutDateTime = new Date();
+                    if (!loadDateTime || timeOutDateTime - loadDateTime < 1210) {
+                        location.href = newHref;
+                    }
+                }, 1200);
+                location.href = 'zhulogic://';
+            }, false)
+        }, false)
+    </script>
+</head>
+<body>
+<div class="downlink" style="background-color: red;height: 300px;width: 300px;">
+ 
+</div>
+</body>
+</html>

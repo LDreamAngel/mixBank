@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title></title>
+  </head>
+  <body>
+    <p>
+        <label>user：</label>
+    </p>
+    <p>
+        <textarea id="detail" readonly="readonly">{ "voiceInfoMap": { "voiceInfo": { "voiceID": "1226228747", "voicePassword": "3ad85afcce8663d27e4f3eaa8674bb74" } } }</textarea>
+    </p>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+    var json = $('#detail').val();
+    var result = JSON.stringify(JSON.parse(json), null, 4);
+    $('#detail').val(result);
+</script>
+
+</html>
