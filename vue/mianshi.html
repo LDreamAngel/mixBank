@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            margin-top: 900px;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+<script>
+    // a={n:2}相当于给a重新赋值了个地址，
+    // b=a,是将a的地址给了b,b还是之前的地址，
+    // var a = { n: 1 }
+    // var b = a;
+    // a.x = a = { n: 2 }
+    // console.log(a.x)//undefined
+    // console.log(b.x)//{n:2}
+
+    //this指向问题
+    // var name='global';
+    // var obj = {
+    //     name:'obj',
+    //     dose:function(){
+    //         console.log(this)//obj
+    //         this.name='dose';
+    //         return function(){
+    //             console.log(this)//window
+    //             return this.name;
+    //         }
+    //     }
+    // }
+    // console.log(this)//window
+    // obj.dose().call(this)
+
+    // var a=10;
+    // function fn2() {
+    //    a=30
+    //     console.log(a,11)
+    //     console.log(this.a,22)
+    // }
+
+    //  fn2();
+
+    // function clone(Obj) {
+    //     var buf;
+    //     if (Obj instanceof Array) {
+    //         buf = [];
+    //         var i = Obj.length;
+    //         while (i--) {
+    //             buf[i] = clone(Obj[i])
+    //         }
+    //         return buf;
+    //     }
+    //     else if (Obj instanceof Object) {
+    //         buf = {};
+    //         for (var k in Obj) {
+    //             buf[k] = Obj[k];
+    //         }
+    //         return buf;
+    //     }
+    //     else {
+    //         return Obj;
+    //     }
+    // }
+    // var a = 5;
+    // var b = {
+    //     c: 'nkichdisf',
+    //     d: 10
+    // };
+    // var e = [{
+    //     c: 'nkichdisf',
+    //     d: 10  
+    // }, 5, 67, 98, 71]
+    // console.log(clone(a))
+    // console.log(clone(b))
+    // console.log(clone(e))
+
+    //深度拷贝
+    // var ary = "asasDFGHadDfFFhjkMNJGBHGDsdfghjfghjkdfghjkl";
+	// var obj = {};
+ 
+	// ary1 = ary.toLocaleLowerCase(); //将字符串转为小写
+ 
+	// for(var i = 0; i < ary1.length; i++){
+	// 	key = ary1[i];
+	// 	if(obj[key]){
+	// 		//对象中有这个字母
+	// 		obj[key]++;
+	// 	}else{
+	// 		//对象中没有这个字母,把字母加到对象中
+	// 		obj[key] = 1;
+	// 	}
+	// }
+ 
+	// for(var key in obj){ //遍历这个对象
+	// 	console.log(key + "这个字母出现了" + obj[key] + "次");
+	// }
+
+    //字符串补全
+    console.log('23'.padStart(3,0))
+    console.log('23'.padEnd(3,0))
+    
+
+</script>
+　
+<script>
+    // "use strict";
+    // console.log("这是严格模式。");
+</script>
+
+　　
+<script>
+    // console.log("这是正常模式。"); kly, it's almost 2 years ago now. I can admit it now - I run it on my school's network that has about 50 computers.
+</script>
+
+</html>

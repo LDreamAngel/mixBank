@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{prodect}}</h1>
+        <ul>
+            <li v-for="item in prodeets">{{item | msgFormat('123','666')}}</li>
+        </ul>
+    </div>
+</body>
+<script src="./vue.min.js"></script>
+<script>
+  const app=new Vue({
+      el:'#app',
+      data() {
+          return {
+              prodect:'苹果',
+              prodeets:['清明节端午节国庆节','中秋节','劳动节']
+          }
+      },
+    //   created() {
+    //       fetch('https://api.myjson.com/bins/74l63')
+    //       .then(res=>res.json())
+    //       .then(json=>{
+    //           console.log(json)
+    //           this.prodeets=json.products;
+    //       })
+    //   },
+    
+    //过滤器
+      filters:{
+          msgFormat(msg,arg,arg2){
+              return msg.replace(/节/g , arg + arg2)
+          }
+      }
+  })
+</script>
+</html>

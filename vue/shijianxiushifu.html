@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="./vue.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            /* background-color: aquamarine; */
+        }
+        /* body{
+            width: 100%;
+            height: 100vh;
+            background-color: aquamarine; 
+        } */
+        .inner{
+            width: 100%;
+            height: 150px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- .stop阻止冒泡，只触发内层事件；默认为冒泡事件，先触发内层事件，再触发外层事件； -->
+        <!-- .capture事件捕获机制，先触发外层事件，再触发内层事件 -->
+         <!-- .self只有点击当前元素才会触发该元素的事件，并不会阻止真正的冒泡行为 -->
+        <!-- <div class="inner" @click.capture.self="divHandler()">
+            <button @click.stop="btnHandler()">戳他</button>
+        </div> -->
+
+        <!-- 绑定class类名，前面是样式名称，后面是标识符 -->
+        <div :class="{inner:felg}" @click.self="divHandler()">
+            <button @click="btnHandler()">戳他</button>
+        </div>
+
+        <!-- .prevent阻止默认事件 与此相似的还有submit按钮-->
+        <!-- .once只阻止一次-->
+        <a href="https://www.baidu.com" @click.prevent.once="linkClick()">跳转百度</a>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                felg:false,
+            }
+        },
+        methods: {
+            divHandler(){
+                console.log("div事件")
+            },
+            btnHandler(){
+                console.log("btn事件")
+            },
+            linkClick(){
+                console.log("链接跳转事件")
+            },
+        }
+    });
+</script>
+
+</html>
