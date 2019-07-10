@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        ul{
+        ul {
             margin-top: 900px;
         }
     </style>
@@ -85,30 +85,73 @@
 
     //深度拷贝
     // var ary = "asasDFGHadDfFFhjkMNJGBHGDsdfghjfghjkdfghjkl";
-	// var obj = {};
- 
-	// ary1 = ary.toLocaleLowerCase(); //将字符串转为小写
- 
-	// for(var i = 0; i < ary1.length; i++){
-	// 	key = ary1[i];
-	// 	if(obj[key]){
-	// 		//对象中有这个字母
-	// 		obj[key]++;
-	// 	}else{
-	// 		//对象中没有这个字母,把字母加到对象中
-	// 		obj[key] = 1;
-	// 	}
-	// }
- 
-	// for(var key in obj){ //遍历这个对象
-	// 	console.log(key + "这个字母出现了" + obj[key] + "次");
-	// }
+    // var obj = {};
+
+    // ary1 = ary.toLocaleLowerCase(); //将字符串转为小写
+
+    // for(var i = 0; i < ary1.length; i++){
+    // 	key = ary1[i];
+    // 	if(obj[key]){
+    // 		//对象中有这个字母
+    // 		obj[key]++;
+    // 	}else{
+    // 		//对象中没有这个字母,把字母加到对象中
+    // 		obj[key] = 1;
+    // 	}
+    // }
+
+    // for(var key in obj){ //遍历这个对象
+    // 	console.log(key + "这个字母出现了" + obj[key] + "次");
+    // }
 
     //字符串补全
-    console.log('23'.padStart(3,0))
-    console.log('23'.padEnd(3,0))
-    
+    // console.log('23'.padStart(3,0))
+    // console.log('23'.padEnd(3,0))
 
+
+    // const obj = {};
+    // function test() {
+    //     console.log(this === obj);
+    // }
+    // // 自定义的函数，模拟 bind() 对 this 的影响
+    // function myBind(func, target) {
+    //     return function () {
+    //         return func.apply(target, arguments);
+    //     };
+    // }
+    // const testObj = myBind(test, obj);
+    // test();// false
+    // testObj();//true
+
+    // const obj = {};
+    // function test() {
+    //     console.log(this === obj);
+    // }
+    // // 绑定到一个新对象，而不是 obj
+    // const testObj = test.bind({});
+    // testObj();//false
+    // test.apply(obj);    // true
+
+
+    // const obj = {
+    //     test() {
+    //         console.log(this === obj);
+    //     }
+    // };
+    // const t = obj.test;
+    // t(); //false
+    // obj.test();//true
+
+    // var jsonStr = '{"name":"jyl","age":18}';
+    // var json = eval('(' + jsonStr + ')');
+    // console.log(json)
+
+    var jsonStr = '{"name":"张三","age":18}';
+    function fn(str) {
+        var jsonObj = (new Function("return" + str))();
+        return jsonObj;
+    }
+    console.log(fn(jsonStr))
 </script>
 　
 <script>

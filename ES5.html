@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // function User(name, pass) {
+    //     this.name = name;
+    //     this.pass = pass;
+    // }
+
+    // User.prototype.showName = function () {
+    //     alert(this.name)
+    // }
+
+    // User.prototype.showPass = function () {
+    //     alert(this.pass)
+    // }
+
+    // function VipUser(name, pass, level) {
+    //     User.call(this, name, pass);
+    //     this.level = level;
+    // }
+
+    // VipUser.prototype = new User();
+    // VipUser.prototype.constructor = VipUser;
+    // VipUser.prototype.showLevel = function () {
+    //     alert(this.level);
+    // }
+
+    // let v1 = VipUser('张三', '123', 3);
+    // v1.showName();
+    // v1.showPass();
+    // v1.showLevel();
+
+    // class User {
+    //     constructor(name, pass) {
+    //         this.name = name;
+    //         this.pass = pass;
+    //     }
+
+    //     showName() {
+    //         alert(this.name);
+    //     }
+    //     showPass() {
+    //         alert(this.pass);
+    //     }
+    // }
+
+    // class VipUser extends User {
+    //     constructor(name, pass, level) {
+    //         super(name, pass);
+    //         this.level = level;
+    //     }
+
+    //     showLevel() {
+    //         alert(this.level);
+    //     }
+    // }
+
+    // let v1 = new VipUser('李四', '123', 4);
+    // v1.showName();
+    // v1.showPass();
+    // v1.showLevel();
+
+    // console.dir(Array.prototype)
+    // console.dir(Object.prototype)
+    // console.dir([])
+    // console.log([] instanceof Array)
+    // console.log(typeof [])
+
+    // var arr = [1, 2, 3, 4, 5];
+
+    // var news = arr.every(function (item, index) {
+    //     return item > 3;	        //判断出数组全部元素中有不符合条件则输出flase
+    // })
+
+    // console.log(news);//false
+    // console.log(arr);//[1,2,3,4,5]
+
+    
+    //求和计算
+    var arr1 = [1, 2, 3, 4, 5];
+    var new1 = arr1.reduce(function (sum, next, index) {
+        return sum + next;
+		/*
+		 *第一次：pre-->1  next-->2  index-->1
+		 *遍历计算return得结果为pre+next=1+2=3
+		 *第二次：pre-->3  next-->3  index-->2
+		 *遍历计算return得结果为pre+next=3+3=6
+		 *第三次：pre-->6  next-->4  index-->3
+		 *遍历计算return得结果为pre+next=6+4=10
+		 *第四次：pre-->10  next-->5  index-->4
+		 *遍历计算return得结果为pre+next=10+5=15
+		*/
+    })
+
+    //扁平化数组
+    var arr2 = [[1, 2, 3], [4, 5], [6, 7]];
+    var new2 = arr2.reduce(function (pre, next, index) {
+        return pre.concat(next);	//前数组拼接后数组 .concat()
+    })
+
+    //对象数组叠加计算
+    var arr3 = [{ price: 10, count: 1 }, { price: 15, count: 2 }, { price: 10, count: 3 }];
+    var new3 = arr3.reduce(function (pre, next, index) {
+        return pre + next.price * next.count;
+        //当需要对第一项进行操作时，后面pre使用上一项操作结果，不再需要操作
+        //所以当需要操作第一项的时候，利用reduce(callbreak(){},往数组第一项前添加一项，如:0)
+    }, 0)	//在原数组第一项添加为0，不改变原数组，则可不操作第一项
+
+    console.log(new1);
+    console.log(new2);
+    console.log(new3);
+
+    console.log(arr1);		//普通数组
+    console.log(arr2);		//多重数组
+    console.log(arr3);		//对象数组
+</script>
+
+</html>

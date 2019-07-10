@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //数组去重并排序
+    // var arr = [1, 1, 2, 3, 4, 5, 2, 1, 3, 4, 0];
+    // arr.sort();
+    // console.log(arr.sort())
+    // var end = arr[0];
+    // var ret03 = [];
+    // ret03.push(arr[0]);
+    // console.log(ret03)
+    // for (let i = 1; i < arr.length; i++) {
+    //     if (arr[i] != end) {
+    //         ret03.push(arr[i]);
+    //         end = arr[i];
+    //     }
+
+    // }
+    // console.log(ret03)
+
+    //数组去重
+    var arr = [1, 1, '2', '1', 3, 4]
+    var res = []
+    for (let i = 0; i < arr.length; i++) {
+        var obj = arr[i];
+        for (var j = 0; j < res.length; j++) {
+            if (res[j] === obj) {
+                console.log(11111)
+                break
+            }
+        }
+        if (res.length === j) res.push(obj);
+    }
+    console.log(res)
+
+</script>
+
+</html>
