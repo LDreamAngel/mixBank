@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+    var i = 2
+    var url1 = "https://www.baidu.com:8050/s?ie=utf-8&f=8"
+    var url2 = "https://blog.csdn.net:8050/altaba/article/details/78539752"
+    var url3 = 'http://www.0-php.com/cat_2.html';
+    var url4 = 'https://onetest.citic.com/?a=1&b=2';
+    // console.log(i == 1 ? GetUrlRelativePath(url1) : GetUrlRelativePath(url2))
+    // 方法一
+    function GetUrlRelativePath(url) {
+        var arrUrl = url.split("//");
+        var start = arrUrl[1].indexOf("/");
+        var relUrl = arrUrl[1].substring(0, start);
+        if (relUrl.indexOf(":") != -1) {
+            relUrl = relUrl.split(":")[0];
+        }
+        return relUrl;
+    }
+    // 方法二
+    function GetHost(url) {
+        var domain = url.split('/'); //以“/”进行分割
+        var relUrl2 = domain[2]
+        if (relUrl2.indexOf(":") != -1) {
+            relUrl2 = relUrl2.split(":")[0];
+        }
+        // console.log(relUrl2)
+        return relUrl2;
+    }
+    GetHost(url1)
+    GetHost(url2)
+    GetHost(url3)
+    GetHost(url4)
+    // 方法三
+    function getDomain(url) {
+        if (url.indexOf('//') > -1) {
+            var st = url.indexOf("//");
+            console.log(st)
+            var _domain = url.substring(st+1, url.length);
+            console.log(_domain)
+            var et = _domain.indexOf("/", 1);
+            console.log(et)
+            _domain = _domain.substring(1, et);
+            strs = _domain.split(".");
+            return strs[strs.length - 2] + "." + strs[strs.length - 1];
+        }
+        return url;
+    }
+
+    console.log(getDomain("http://www.zshare.net/1/2.htm"))
+    console.log(getDomain("https://www.zshare.net:8080/1/2.htm"))
+</script>
+
+</html>
