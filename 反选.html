@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+
+        td {
+            font: 14px "微软雅黑";
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="all" />
+                    </th>
+                    <th>商品</th>
+                    <th>价钱</th>
+                </tr>
+            </thead>
+            <tbody id="goods">
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>iPhoneX</td>
+                    <td>8000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>iPad Pro</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>iPad Air</td>
+                    <td>2000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>Apple Watch</td>
+                    <td>2000</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="button" value="反选" id="btn">
+    </div>
+</body>
+<script>
+    // 1、实现全选
+    let all = document.querySelector('#all')
+    let per = document.querySelectorAll('#goods input')
+    all.onclick = function () {
+        let flag = all.checked
+        for (let i = 0; i < per.length; i++) {
+            let perFlag = per[i].checked
+            if (perFlag === flag) {
+                continue
+            } else {
+                per[i].checked = flag
+            }
+        }
+    }
+
+    // 2、实现反选
+    let btn = document.querySelector('#btn')
+    btn.onclick = function () {
+        for (let i = 0; i < per.length; i++) {
+            let flag = per[i].checked
+            per[i].checked = !flag
+        }
+        // 检测全选的checkbox是否要被选中
+        checkAllCheckBox()
+    }
+
+    // 3、单个选择，判断全选
+    for (let i = 0; i < per.length; i++) {
+        per[i].onclick = function () {
+            // 检测全选的checkbox是否要被选中
+            checkAllCheckBox()
+        }
+    }
+
+    /// 检测全选的checkbox是否要被选中
+    function checkAllCheckBox() {
+        let isAllCheck = true; // 先假设tobody每一个checkbox都被选中
+        for (var j = 0; j < per.length; j++) {
+            if (per[j].checked == false) {
+                isAllCheck = false;
+            }
+        }
+        // 把isAllCheck赋值给全选的checkbox
+        all.checked = isAllCheck;
+    }
+</script>
+
+</html>
