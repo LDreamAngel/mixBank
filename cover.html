@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* 方案一 */
+        .contant{
+            position: relative;
+            width: 100%;
+            height: 340px;
+            background: url('./image/cover_08.jpg') no-repeat center;
+            background-size: cover;
+            border: solid 1px;
+        }
+        .cover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(170, 187, 190, 0.4);
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 方案二*/
+        .row {
+            position: relative;
+            width: 100%;
+            background: #000;
+        }
+        /* 1 */
+        /* .row>div {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .row>img {
+            width: 100%;
+            opacity: 0.6;
+        } */
+        /* 2 */
+        .row>div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background-color: rgba(225, 225, 225, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .row>img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contant">
+        <div class="cover">
+            <h1>文字信息</h1>
+        </div>
+    </div>
+
+    <hr />
+    <h1>分割线</h1>
+
+    <div class="row">
+        <img src="./image/cover_07.png" />
+        <div>
+            <h2 style="color:#fff">文字浮动在图片上方</h2>
+        </div>
+    </div>
+</body>
+
+</html>
