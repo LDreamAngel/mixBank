@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" accept="image/*" name="ClubImagesUpload" id="ClubImagesUpload" class="hide" multiple="multiple">
+</body>
+<script>
+    document.addEventListener('visibilitychange',function(){ 
+        //浏览器切换事件
+        if(document.visibilityState=='hidden') { 
+            //离开当前tab标签
+            console.log("离开当前tab标签");
+        }else {
+            //回到当前tab标签
+            console.log("回到当前tab标签");
+        }
+    });
+</script>
+</html>
