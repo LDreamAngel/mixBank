@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="boxs"></div>
+    <button class="sbt">按钮</button>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    // 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
+var list = [{
+    id: 1,
+    name: '规格',
+    list: [{
+        name: 'S',
+        id: 11
+    }, {
+        name: 'M',
+        id: 12
+    }, {
+        name: 'X',
+        id: 13
+    }, {
+        name: 'XL',
+        id: 14
+    }]
+}, {
+    id: 2,
+    name: '颜色',
+    list: [{
+        name: '白色',
+        id: 21
+    }, {
+        name: '黑色',
+        id: 22
+    }, {
+        name: '绿色',
+        id: 23
+    }, {
+        name: '蓝色',
+        id: 24
+    }]
+}, {
+    id: 3,
+    name: '内存',
+    list: [{
+        name: '32',
+        id: 31
+    }, {
+        name: '64',
+        id: 32
+    }]
+}];
+
+(function () {
+    let strs = ''
+    list.forEach(item => {
+        strs += `<h5 class=title>${item.name}</h5>`
+        let li = item.list.map(val => {
+            return `<li data_id=${val.id}><span  class=colors>${val.name}</span></li>`
+        })
+        strs += `<ul class=skus>${li.join('')}</ul>`
+    })
+    $('.boxs').html(strs)
+    //我是匿名方式1----推荐使用这个----这种经常用来构建沙箱模式
+}());
+$('.skus li').on('click', function () {
+    $(this).css({ color: '#fff', background: 'red', borderColor: 'red' }).attr('data-check','true')  
+    $(this).siblings().css({ color: '#000', background: '#fff', borderColor: '#000' }).removeAttr('data-check')
+})
+// 点击的时候
+$('.sbt').click('on',function(){
+    console.log($('.skus li[data-check=true]'))
+    if ($('.skus li[data-check=true]').length < 1) {
+        alert('请选择')
+        return
+    } else {
+        $('.skus li[data-check=true]').each(function(){
+            console.log($(this).data('id'))
+        })
+    }
+})
+</script>
+</html>
