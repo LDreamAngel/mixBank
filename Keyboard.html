@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document-_</title>
+    <style>
+        table{
+            width: 800px;
+            height: 300px;
+            text-align: center;
+        }
+        .focuson{
+            background-color: rgb(210, 237, 245);
+        }
+    </style>
+</head>
+
+<body>
+   <table border="1"  cellspacing="0">
+        <tr>
+            <td data-focus="false">0-0</td>
+            <td data-focus="false">1-0</td>
+            <td data-focus="false">2-0</td>
+            <td data-focus="false">3-0</td>
+            <td data-focus="false">4-0</td>
+            <td data-focus="false">5-0</td>
+        </tr>
+       <tr>
+           <td data-focus="false">0-1</td>
+           <td data-focus="false">1-1</td>
+           <td data-focus="false">2-1</td>
+           <td data-focus="false">3-1</td>
+           <td data-focus="false">4-1</td>
+           <td data-focus="false">5-1</td>
+       </tr>
+       <tr>
+           <td data-focus="false">0-2</td>
+           <td data-focus="false">1-2</td>
+           <td data-focus="false">2-2</td>
+           <td data-focus="false">3-2</td>
+       </tr>
+       <tr>
+           <td data-focus="false">0-3</td>
+           <td data-focus="false">1-3</td>
+           <td data-focus="false">2-3</td>
+           <td data-focus="false">3-3</td>
+           <td data-focus="false">4-3</td>
+           <td data-focus="false">5-3</td>
+       </tr>
+       <tr>
+           <td data-focus="false">0-4</td>
+           <td data-focus="false">1-4</td>
+           <td data-focus="false">2-4</td>
+           <td data-focus="false">3-4</td>
+           <td data-focus="false">4-4</td>
+       </tr>
+
+
+   </table>
+   <input type="checkbox" name="" id="">
+   <textarea name="" id="" cols="30" rows="10"></textarea>
+
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="./jquery-2.2.2.min.js"></script> -->
+<script>
+
+        let currentIndex = { x:0, y:0 };
+        // 生成二维数组
+        let line = document.getElementsByTagName('tr');
+        let arr = [];
+        $('table tr').each(function(i){ // 遍历 tr
+            let lineArr = [];                  
+            $(this).children('td').each(function(j){  // 遍历 tr 的各个 td
+                lineArr.push(j)
+                // $(this).attr('data-site',`{x:${j},y:${i}}`);
+                $(this).attr('data-x',j);
+                $(this).attr('data-y',i);
+            });
+            arr.push(lineArr)
+        });
+
+        // 每个单元格的点击事件
+        $("table td").click(function(){
+            $('table tr').each(function(){
+                $(this).siblings().children('td').removeClass('focuson').attr('data-focus',false);
+            });
+            currentIndex.x = Number($(this).attr('data-x')); //获取索引下标 也从0开始
+            currentIndex.y = Number($(this).attr('data-y')); //获取索引下标 也从0开始
+            $(this).addClass('focuson').attr('data-focus',true);
+            $(this).siblings().removeClass('focuson').attr('data-focus',false);
+        })
+
+        // 获取多选框的状态
+        let flag;// 用于判断是否使用默认阻止事件
+        $("input[type=checkbox]").click(function () {
+            flag = $("input[type=checkbox]").prop('checked');
+        })
+
+        let tagList = document.querySelectorAll('[data-focus]');
+        
+
+        // 键盘事件
+        // 方法一：
+        // window.addEventListener('keydown', (event)=>{}, true)
+
+        // 方法二：
+        document.onkeydown = (event)=>{
+            if (event.altKey && (event.keyCode === 37||event.keyCode === 38||event.keyCode === 39||event.keyCode === 40)){
+                tagList.forEach(el => {
+                        el.setAttribute('data-focus',false)
+                        el.setAttribute('class','');
+                });
+            }
+
+           // 右箭头
+    　　　　if (event.altKey && event.keyCode === 39){
+                if (currentIndex.x < arr[currentIndex.y].length-1) {
+                    currentIndex.x ++ ;
+                }
+                highLight(currentIndex)
+    　　　　} 
+
+           // 左箭头
+    　　　　if (event.altKey && event.keyCode === 37){ 
+                // alert('你按下了CTRL+C'); 
+                if (currentIndex.x > 0) {
+                    currentIndex.x -- 
+                }
+                highLight(currentIndex)
+    　　　　} 
+            // 上
+    　　　　if (event.altKey && event.keyCode === 38){ 
+                if (currentIndex.y > 0) {
+                    currentIndex.y -- 
+                }
+                highLight(currentIndex)
+    　　　　} 
+          // 下
+    　　　　if (event.altKey && event.keyCode === 40){ 
+                if (currentIndex.y < arr.length-1) {
+                    // let count = 1;
+                    // while(($(`td[data-x=${currentIndex.x}][data-y=${currentIndex.y}]`) == 0) && currentIndex.y + count <= arr.length-1){
+                    //     count ++;
+                    // }
+                    // currentIndex.y += count;
+                    currentIndex.y ++
+                }
+                highLight(currentIndex)
+    　　　　} 
+
+
+           // enter 取消默认阻止事件
+            if(event.keyCode === 13){
+                if (flag) {
+                    event.returnValue = true;
+                    alert('已取消默认阻止事件')
+                }else{
+                    event.preventDefault()
+                    alert('已阻止默认事件')
+                }
+            }
+
+            // ctrl+s
+            if (event.ctrlKey && event.keyCode === 83) {
+                event.preventDefault()
+            }
+        }
+
+        function highLight(obj){
+            let cell = $(`td[data-x=${obj.x}][data-y=${obj.y}]`);
+            if(cell.length != 0){
+                cell.attr('data-focus',true)
+                document.querySelector('[data-focus=true]').setAttribute('class','focuson');
+            } 
+        }
+</script>
+
+</html>
