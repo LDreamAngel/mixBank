@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .many-txt{
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .all-txt{
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 100;
+            -webkit-box-orient: vertical;
+        }	
+    </style>
+
+</head>
+
+<body>
+    <!-- <div id="box" class="many-txt"> -->
+    <div id="box">
+    	中国电子打造超百亿LED产业链的核心平台，是省政府确认的LED行业龙头企业之一，是海峡西岸对台合作中国电子打造超百亿LED产业链的核心平台，是省政府确认的LED行业龙头企业之一，是海峡西岸对台合作
+	</div>
+    <!-- <button type="button">查看全部</button> -->
+    
+    
+</body>
+
+<!-- <script>
+    let button = document.getElementsByTagName("button")[0];
+    let p = document.getElementById("box");
+ 
+    button.onclick = function () {
+        if(this.innerHTML == "显示全部"){
+            p.classList.remove("many-txt");
+            p.classList.add("all-txt");
+            this.innerHTML = "隐藏";
+        }
+        else{
+            p.classList.remove("all-txt");
+            p.classList.add("many-txt");
+            this.innerHTML = "显示全部";
+        }
+    }
+</script> -->
+
+<script>
+    function init(){
+        var len = 70;      //规定要显示的字数
+        var con = document.getElementById("box");
+        var content = con.innerHTML;      
+
+        var span = document.createElement("span");     
+        var a = document.createElement("a");           
+        span.innerHTML = content.substring(0,len);     
+ 
+        a.innerHTML = content.length>len?"...":"" 
+        a.href = "javascript:void(0)";//让a链接点击不跳转
+ 
+        a.onclick = function(){
+            if(a.innerHTML.indexOf("显示全部") != -1){      //如果a中含有"显示全部"则显示"隐藏"
+                a.innerHTML = "隐藏";
+                span.innerHTML = content;
+            }else{
+                a.innerHTML = "显示全部";
+                span.innerHTML = content.substring(0,len);
+            }
+        };
+        // 设置div内容为空，span元素 a元素加入到div中
+        con.innerHTML = "";
+        con.appendChild(span);
+        con.appendChild(a);
+    }
+    init();
+ 
+</script>
+
+</html>
